@@ -2,7 +2,8 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     contanier:{
-        marginBottom: 16
+        width: '50%',
+        padding: 8
     },
     image:{
         width: "100%",

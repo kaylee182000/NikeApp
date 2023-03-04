@@ -4,11 +4,11 @@ import FastImage from 'react-native-fast-image';
 import {Product} from '../../types/product.type';
 import styles from './styles';
 
-interface data {
-  data: Product;
+interface dataProps  {
+  data : Product,
 }
 
-const CardItem = ({data}: data) => {
+const CardItem = ({data} : dataProps) => {
   return (
     <View style={styles.contanier}>
       <FastImage source={{uri: data.image}} style={styles.image} />
