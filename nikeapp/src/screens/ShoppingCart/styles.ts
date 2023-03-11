@@ -2,7 +2,7 @@ import {Dimensions, StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
     totalContainer:{
-        margin: 20,
+        margin: 30,
         padding: 12,
         borderColor: 'black',
         //borderWidth: 1,
@@ -24,7 +24,8 @@ const styles = StyleSheet.create({
         marginVertical: 4
     },
     cardContainer:{
-        height: Dimensions.get('screen').height - 200,
+        //height: Dimensions.get('screen').height - 200,
+        marginBottom: 88
     }
 });
 

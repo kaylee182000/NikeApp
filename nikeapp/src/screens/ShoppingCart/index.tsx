@@ -27,7 +27,7 @@ const ShoppingCart = () => {
   };
 
   return (
-    <View style={{height: '100%'}}>
+    <View>
       <View style={styles.cardContainer}>
         <FlatList
           keyExtractor={item => item.product.id}

@@ -11,23 +11,28 @@ import styles from './styles';
 const ProductDetailScreen = () => {
   const product = products[0];
   const addToCart = () => {
-    console.warn('chup chup')
-  }
+    console.warn('chup chup');
+  };
   return (
-    <View>
-      {/* make a header */}
-      <ScrollView>
-        <View style={styles.container}>
-          <ProductSlide imageData={product.images} />
-          <View style={{padding: 20}}>
-            <Text style={styles.title}>{product.name}</Text>
-            <Text style={styles.price}>${product.price}</Text>
-            <Text style={styles.desc}>{product.description}</Text>
+    <>
+      <View>
+        {/* make a header */}
+        <ScrollView>
+          <View style={styles.scrollContainer}>
+            <ProductSlide imageData={product.images} />
+            <View style={{padding: 20}}>
+              <View style={styles.viewRow}>
+                <Text style={styles.title}>{product.name}</Text>
+                <Text style={styles.price}>${product.price}</Text>
+              </View>
+
+              <Text style={styles.desc}>{product.description}</Text>
+            </View>
           </View>
-        </View>
-      </ScrollView>
-      <ButtonCommon buttonText={'Add To Cart'} onPressButton={addToCart}/>
-    </View>
+        </ScrollView>
+      </View>
+      <ButtonCommon buttonText={'Add To Cart'} onPressButton={addToCart} />
+    </>
   );
 };
 
