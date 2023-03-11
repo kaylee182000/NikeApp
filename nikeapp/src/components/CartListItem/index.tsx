@@ -18,7 +18,8 @@ const CartListItem = ({cartItem}: CartListItemProps) => {
       <Image source={{uri: cartItem.product.image}} style={styles.image} />
       <View style={styles.contentContainer}>
         <Text style={styles.name}>{cartItem.product.name}</Text>
-        <Text style={styles.size}>Size {cartItem.size}</Text>
+        <Text style={styles.itemTotal}>$320.0</Text>
+        
 
         <View style={styles.footer}>
           <Feather
@@ -34,7 +35,7 @@ const CartListItem = ({cartItem}: CartListItemProps) => {
             size={24}
             color="gray"
           />
-          <Text style={styles.itemTotal}>$320.0</Text>
+          <Text style={styles.size}>Size {cartItem.size}</Text>
         </View>
       </View>
     </View>

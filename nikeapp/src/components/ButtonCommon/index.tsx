@@ -5,7 +5,7 @@ import styles from "./styles";
 
 interface ButtonProps {
     buttonText: string;
-    onPressButton: () => void
+    onPressButton?: () => void
 }
 
 const ButtonCommon = ({buttonText,onPressButton} : ButtonProps) => {

@@ -2,26 +2,29 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
-    paddingHorizontal: 10,
+    paddingVertical: 16,
+    paddingHorizontal: 16,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: "space-between"
+    //alignItems: 'center',
+    //justifyContent: "space-between"
   },
   contentContainer: { 
-    marginLeft: 10,
+    marginLeft: 16,
+    flex: 1,
   },
   image: {
     width: '40%',
     aspectRatio: 1,
   },
   name: {
-    fontWeight: '500',
+    fontWeight: 'bold',
     fontSize: 18,
   },
   size: {
     fontSize: 16,
     color: 'gray',
+    fontWeight: '500',
+    marginLeft: 'auto',
   },
   quantity: {
     marginHorizontal: 10,
@@ -35,8 +38,8 @@ const styles = StyleSheet.create({
   },
   itemTotal: {
     fontSize: 16,
-    marginLeft: 'auto',
-    fontWeight: '500',
+
+    color: 'gray',
   },
 });
 
