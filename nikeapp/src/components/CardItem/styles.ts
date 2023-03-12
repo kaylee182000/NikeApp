@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     contanier:{
         width: '50%',
-        padding: 8
+        padding: 16,
     },
     image:{
         width: "100%",
@@ -11,8 +11,9 @@ const styles = StyleSheet.create({
     },
     textName:{
         fontSize: 18,
-        fontWeight: '400',
-        color: "#000"
+        fontWeight: '600',
+        color: "#000",
+        textAlign: 'center'
     }
 })
 

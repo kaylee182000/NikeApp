@@ -2,11 +2,8 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+    padding: 16,
     flexDirection: 'row',
-    //alignItems: 'center',
-    //justifyContent: "space-between"
   },
   contentContainer: { 
     marginLeft: 16,

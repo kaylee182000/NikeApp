@@ -1,21 +1,30 @@
-import React from "react";
-import { Text, View, FlatList } from "react-native";
-import products from "../../data/products";
-import CardItem from "../../components/CardItem";
+import React from 'react';
+import {Text, View, FlatList} from 'react-native';
+import products from '../../data/products';
+import CardItem from '../../components/CardItem';
 
-import styles from "./styles";
+import styles from './styles';
+import AppBarHeader from '../../components/AppBarHeader';
 
 const ProductScreen = () => {
-    return (
-        <FlatList
+  const handlePressGoback = () => {
+    console.warn('hi');
+  };
+  return (
+    <>
+      <AppBarHeader
+        title="Product"
+        onPressGoBack={handlePressGoback}
+        isShowIcon={false}
+      />
+      <FlatList
         data={products}
-        renderItem={({item}) => (
-          <CardItem data={item}/>
-        )}
+        renderItem={({item}) => <CardItem data={item} />}
         keyExtractor={item => item.id}
         numColumns={2}
       />
-    )
-}
+    </>
+  );
+};
 
-export default ProductScreen
+export default ProductScreen;
