@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     backgroundColor: '#fff',
-    marginBottom: 72
+    marginBottom: 72,
   },
   title: {
     fontSize: 34,
@@ -24,11 +24,15 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontWeight: '300',
   },
-  viewRow:{
+  viewRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  }
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
 });
 
 export default styles;

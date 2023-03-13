@@ -9,6 +9,11 @@ import CartScreen from '../screens/ShoppingCart';
 
 const Stack = createNativeStackNavigator();
 
+export type RootStackParamList = {
+  ProductScreen: undefined;
+  ProductDetailScreen: { productId: string };
+};
+
 const RootStack = () => {
   return (
     <NavigationContainer>

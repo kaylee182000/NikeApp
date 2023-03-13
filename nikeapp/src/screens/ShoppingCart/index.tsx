@@ -2,11 +2,12 @@ import React from 'react';
 import {View, Text, FlatList, Dimensions} from 'react-native';
 import cart from '../../data/cart';
 import CartListItem from '../../components/CartListItem';
-
-import styles from './styles';
 import ButtonCommon from '../../components/ButtonCommon';
+import AppBarHeader from '../../components/AppBarHeader';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import styles from './styles';
 
-const ShoppingCart = () => {
+const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
   const renderFooterComponent = () => {
     return (
       <View style={styles.totalContainer}>
@@ -27,7 +28,12 @@ const ShoppingCart = () => {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
+      <AppBarHeader
+        title={'Cart'}
+        onPressGoBack={() => navigation.goBack()}
+        isShowIcon={true}
+      />
       <View style={styles.cardContainer}>
         <FlatList
           keyExtractor={item => item.product.id}
@@ -36,7 +42,6 @@ const ShoppingCart = () => {
           ListFooterComponent={renderFooterComponent}
         />
       </View>
-
       <ButtonCommon buttonText={'Checkout'} />
     </View>
   );
