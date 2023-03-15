@@ -7,22 +7,39 @@ import styles from './styles';
 interface AppBarHeaderProps {
   title: string;
   onPressGoBack?: () => void;
+  onPressIconRight?: () => void;
+  isShowIconRight?: boolean;
   isShowIcon?: boolean;
+  iconRight?: string;
+  iconLeft?: string;
 }
 
 const AppBarHeader = ({
   title,
   onPressGoBack,
   isShowIcon,
+  iconRight,
+  iconLeft,
+  onPressIconRight,
+  isShowIconRight,
 }: AppBarHeaderProps) => {
   return (
     <SafeAreaView style={styles.headerContainer}>
-      {isShowIcon ? (
+      {isShowIcon && iconLeft ? (
         <TouchableOpacity onPress={onPressGoBack}>
-          <Icon name={'chevron-back-outline'} color="white" size={28} />
+          <Icon name={iconLeft} color="white" size={28} />
         </TouchableOpacity>
-      ) : null}
+      ) : (
+        <Text></Text>
+      )}
       <Text style={styles.text}>{title}</Text>
+      {isShowIconRight && iconRight ? (
+        <TouchableOpacity onPress={onPressIconRight}>
+          <Icon name={iconRight} color="white" size={28} style={{justifyContent: 'flex-start'}}/>
+        </TouchableOpacity>
+      ) : (
+        <Text></Text>
+      )}
     </SafeAreaView>
   );
 };

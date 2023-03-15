@@ -35,6 +35,7 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
             title={product.name}
             onPressGoBack={handlePressBack}
             isShowIcon={true}
+            iconLeft={'chevron-back-outline'}
           />
           <ScrollView>
             <View style={styles.scrollContainer}>

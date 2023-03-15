@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator();
 
 export type RootStackParamList = {
   ProductScreen: undefined;
-  ProductDetailScreen: { productId: string };
+  ProductDetailScreen: {productId: string};
 };
 
 const RootStack = () => {

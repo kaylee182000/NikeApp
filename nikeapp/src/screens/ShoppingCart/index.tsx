@@ -30,9 +30,10 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
   return (
     <View style={styles.container}>
       <AppBarHeader
-        title={'Cart'}
+        title={'CART'}
         onPressGoBack={() => navigation.goBack()}
         isShowIcon={true}
+        iconLeft={'chevron-back-outline'}
       />
       <View style={styles.cardContainer}>
         <FlatList
