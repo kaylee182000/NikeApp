@@ -10,23 +10,33 @@ import {useRoute, RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../stack_navigator/navigation';
 import {screenName} from '../../stack_navigator';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
-import styles from './styles';
 import {Product} from '../../types/product.type';
+import {useAppDispatch} from '../../redux/store';
+import {addToCart} from '../../redux/cart/cartSlide';
+import styles from './styles';
 
 const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
   const route =
     useRoute<RouteProp<RootStackParamList, 'ProductDetailScreen'>>();
+
+  const dispatch = useAppDispatch();
+
   const productId = route.params.productId;
 
-  const product = products.find(item => item.id === productId);
+  const product: Product = products.find(item => item.id === productId)!;
 
-  const addToCart = () => {
-    navigation.navigate(screenName.cartScreen);
+  const onPressAddToCart = () => {
+    const data = {product: product, size: 43, quantity: 1};
+    dispatch(addToCart({data: data}));
   };
   const handlePressBack = () => {
     navigation.goBack();
   };
+
+  const onPressIconRight = () => {
+    navigation.navigate(screenName.cartScreen);
+  };
+
   return (
     <>
       {product && (
@@ -36,6 +46,9 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
             onPressGoBack={handlePressBack}
             isShowIcon={true}
             iconLeft={'chevron-back-outline'}
+            isShowIconRight={true}
+            iconRight={'cart-outline'}
+            onPressIconRight={onPressIconRight}
           />
           <ScrollView>
             <View style={styles.scrollContainer}>
@@ -50,7 +63,10 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
               </View>
             </View>
           </ScrollView>
-          <ButtonCommon onPressButton={addToCart} buttonText={'Add To Cart'} />
+          <ButtonCommon
+            onPressButton={onPressAddToCart}
+            buttonText={'Add To Cart'}
+          />
         </View>
       )}
     </>

@@ -1,13 +1,18 @@
 import React from 'react';
 import {View, Text, FlatList, Dimensions} from 'react-native';
-import cart from '../../data/cart';
+//import cart from '../../data/cart';
 import CartListItem from '../../components/CartListItem';
 import ButtonCommon from '../../components/ButtonCommon';
 import AppBarHeader from '../../components/AppBarHeader';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+
+import {useAppSelector} from '../../redux/store';
+
 import styles from './styles';
 
 const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
+  const carts = useAppSelector(rootState => rootState.cart.cart);
+
   const renderFooterComponent = () => {
     return (
       <View style={styles.totalContainer}>
@@ -37,8 +42,9 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
       />
       <View style={styles.cardContainer}>
         <FlatList
+          showsVerticalScrollIndicator={false}
           keyExtractor={item => item.product.id}
-          data={cart}
+          data={carts}
           renderItem={({item}) => <CartListItem cartItem={item} />}
           ListFooterComponent={renderFooterComponent}
         />

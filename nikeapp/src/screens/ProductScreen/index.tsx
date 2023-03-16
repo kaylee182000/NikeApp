@@ -14,10 +14,6 @@ import styles from './styles';
 const ProductScreen = ({navigation} : NativeStackScreenProps<any>) => {
 const products = useAppSelector(rootState => rootState.products?.products)
 
-  const handlePressGoback = () => {
-    console.warn('hi');
-  };
-
   const onPressDetailProduct = (id : string) => {
     navigation.navigate(screenName.productDetaiScreen, ({productId: id}))
   }
@@ -29,7 +25,7 @@ const products = useAppSelector(rootState => rootState.products?.products)
     <>
       <AppBarHeader
         title="PRODUCT"
-        onPressGoBack={handlePressGoback}
+        //onPressGoBack={handlePressGoback}
         // isShowIcon={true}
         // iconLeft={'chevron-back-outline'}
         isShowIconRight={true}

@@ -10,12 +10,12 @@ const initialState : ProductState = {
   products: products
 };
 
-export const productSlide = createSlice({
+const productSlide = createSlice({
   name: 'products',
   initialState,
   reducers: {},
 });
 
-// export const {} = productSlide.actions;
+export const {} = productSlide.actions;
 
-// export default productSlide.reducer;
+export default productSlide.reducer;

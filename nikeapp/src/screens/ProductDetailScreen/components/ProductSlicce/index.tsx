@@ -5,7 +5,7 @@ import FastImage from 'react-native-fast-image';
 import styles from './styles';
 
 interface ProductSliceProps {
-  imageData: string[];
+  imageData?: string[];
 }
 const ProductSlide = ({imageData}: ProductSliceProps) => {
   const {width} = useWindowDimensions();
