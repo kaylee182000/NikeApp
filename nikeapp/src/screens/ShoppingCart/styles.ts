@@ -1,4 +1,4 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   totalContainer: {
@@ -14,9 +14,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   textBold: {
-    fontSize: 22,
+    fontSize: 26,
     fontWeight: 'bold',
-    color: 'black',
+    color: '#7f1d1d',
   },
   viewRow: {
     flexDirection: 'row',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     paddingHorizontal: 16,
-    paddingVertical:24
+    paddingVertical: 24,
   },
   container: {flex: 1, backgroundColor: 'white'},
 });

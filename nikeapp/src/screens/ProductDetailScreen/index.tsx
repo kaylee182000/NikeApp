@@ -28,7 +28,9 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
   const onPressAddToCart = () => {
     const data = {product: product, size: 43, quantity: 1};
     dispatch(addToCart({data: data}));
+    navigation.navigate(screenName.cartScreen);
   };
+
   const handlePressBack = () => {
     navigation.goBack();
   };

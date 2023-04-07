@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {View, Text, FlatList} from 'react-native';
 //import cart from '../../data/cart';
 import CartListItem from '../../components/CartListItem';
@@ -8,7 +8,8 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {useAppSelector, useAppDispatch} from '../../redux/store';
 import {screenName} from '../../stack_navigator';
-import {changeQuantity} from '../../redux/cart/cartSlide';
+import {changeQuantity, deleteFromCart} from '../../redux/cart/cartSlide';
+import {numberWithCommas} from '../../helpers/index';
 
 import styles from './styles';
 
@@ -26,12 +27,33 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
     dispatch(changeQuantity({data: data}));
   };
 
+  const handlePressDelete = (productId: string) => {
+    const data = productId;
+    dispatch(deleteFromCart({data: data}));
+  };
+
+  const getSubTotalPrice = useCallback(() => {
+    let subTotalPrice = 0;
+    carts.forEach(p => {
+      const total = p.quantity * p.product.price;
+      subTotalPrice = subTotalPrice + total;
+    });
+    return subTotalPrice;
+  }, [carts]);
+
+  const getTotalPrice = useCallback(() => {
+    const subTotalPrice = getSubTotalPrice();
+    return subTotalPrice + 10;
+  }, [getSubTotalPrice]);
+
   const renderFooterComponent = () => {
     return (
       <View style={styles.totalContainer}>
         <View style={styles.viewRow}>
           <Text style={styles.commonText}>Subtotals</Text>
-          <Text style={styles.commonText}>410,00$</Text>
+          <Text style={styles.commonText}>
+            {numberWithCommas(getSubTotalPrice())}$
+          </Text>
         </View>
         <View style={styles.viewRow}>
           <Text style={styles.commonText}>Delivery</Text>
@@ -39,7 +61,9 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
         </View>
         <View style={styles.viewRow}>
           <Text style={styles.textBold}>Totals</Text>
-          <Text style={styles.textBold}>420,00$</Text>
+          <Text style={styles.textBold}>
+            {numberWithCommas(getTotalPrice())}$
+          </Text>
         </View>
       </View>
     );
@@ -63,6 +87,7 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
               cartItem={item}
               increaseQuantity={() => increaseQuantity(item.product.id)}
               decreaseQuantity={() => decreaseQuantity(item.product.id)}
+              deleteFromCart={() => handlePressDelete(item.product.id)}
             />
           )}
           ListFooterComponent={renderFooterComponent}

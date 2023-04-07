@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
     color: '#000',
   },
   price: {
-    fontWeight: '500',
-    fontSize: 24,
+    fontWeight: 'bold',
+    fontSize: 28,
     letterSpacing: 1.5,
-    color: '#000',
+    color: '#7f1d1d',
   },
   desc: {
     marginVertical: 16,
