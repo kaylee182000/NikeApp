@@ -6,13 +6,25 @@ import ButtonCommon from '../../components/ButtonCommon';
 import AppBarHeader from '../../components/AppBarHeader';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {useAppSelector} from '../../redux/store';
+import {useAppSelector, useAppDispatch} from '../../redux/store';
+import {screenName} from '../../stack_navigator';
+import {changeQuantity} from '../../redux/cart/cartSlide';
 
 import styles from './styles';
-import {screenName} from '../../stack_navigator';
 
 const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
+  const dispatch = useAppDispatch();
   const carts = useAppSelector(rootState => rootState.cart.cart);
+
+  const increaseQuantity = (productId: string) => {
+    const data = {id: productId, type: 'increase'};
+    dispatch(changeQuantity({data: data}));
+  };
+
+  const decreaseQuantity = (productId: string) => {
+    const data = {id: productId, type: 'decrease'};
+    dispatch(changeQuantity({data: data}));
+  };
 
   const renderFooterComponent = () => {
     return (
@@ -46,7 +58,13 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
           showsVerticalScrollIndicator={false}
           keyExtractor={item => item.product.id}
           data={carts}
-          renderItem={({item}) => <CartListItem cartItem={item} />}
+          renderItem={({item}) => (
+            <CartListItem
+              cartItem={item}
+              increaseQuantity={() => increaseQuantity(item.product.id)}
+              decreaseQuantity={() => decreaseQuantity(item.product.id)}
+            />
+          )}
           ListFooterComponent={renderFooterComponent}
         />
       </View>

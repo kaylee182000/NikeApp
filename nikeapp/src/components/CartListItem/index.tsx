@@ -7,13 +7,15 @@ import styles from './styles';
 
 interface CartListItemProps {
   cartItem: Cart;
+  increaseQuantity: () => void;
+  decreaseQuantity: () => void;
 }
 
-const CartListItem = ({cartItem}: CartListItemProps) => {
-  const increaseQuantity = () => {};
-
-  const decreaseQuantity = () => {};
-
+const CartListItem = ({
+  cartItem,
+  increaseQuantity,
+  decreaseQuantity,
+}: CartListItemProps) => {
   return (
     <View style={styles.container}>
       <FastImage source={{uri: cartItem.product.image}} style={styles.image} />

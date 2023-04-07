@@ -30,9 +30,12 @@ const cartSlide = createSlice({
         state.cart.push(action.payload.data);
       }
     },
+    changeQuantity: (state, action: PayloadAction<{data: any}>) => {
+      const {data} = action.payload;
+    },
   },
 });
 
-export const {addToCart} = cartSlide.actions;
+export const {addToCart, changeQuantity} = cartSlide.actions;
 
 export default cartSlide.reducer;
