@@ -1,7 +1,7 @@
-import { Product } from "./product.type"
+import {Product} from './product.type';
 
 export interface Cart {
-    product: Product,
-    size: number,
-    quantity: number
+  product: Product;
+  size: number;
+  quantity: number;
 }

@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Animated} from 'react-native';
+import {View, Text} from 'react-native';
 import {Cart} from '../../types/cart.type';
 import Feather from 'react-native-vector-icons/Feather';
 import FastImage from 'react-native-fast-image';

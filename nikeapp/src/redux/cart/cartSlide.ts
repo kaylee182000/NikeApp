@@ -14,7 +14,21 @@ const cartSlide = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<{data: Cart}>) => {
-      state.cart.push(action.payload.data);
+      const {data} = action.payload;
+      const isAlreadyInCart = state.cart.find(
+        p => p.product.id === data.product.id,
+      );
+
+      if (isAlreadyInCart) {
+        const newCart = [...state.cart];
+        const productIndex = newCart.findIndex(
+          p => p.product.id === data.product.id,
+        );
+        newCart[productIndex].quantity++;
+        state.cart = newCart;
+      } else {
+        state.cart.push(action.payload.data);
+      }
     },
   },
 });

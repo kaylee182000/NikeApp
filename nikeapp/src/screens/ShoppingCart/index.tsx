@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, FlatList, Dimensions} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 //import cart from '../../data/cart';
 import CartListItem from '../../components/CartListItem';
 import ButtonCommon from '../../components/ButtonCommon';
@@ -9,6 +9,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useAppSelector} from '../../redux/store';
 
 import styles from './styles';
+import {screenName} from '../../stack_navigator';
 
 const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
   const carts = useAppSelector(rootState => rootState.cart.cart);
@@ -36,7 +37,7 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
     <View style={styles.container}>
       <AppBarHeader
         title={'CART'}
-        onPressGoBack={() => navigation.goBack()}
+        onPressGoBack={() => navigation.navigate(screenName.productScreen)}
         isShowIcon={true}
         iconLeft={'chevron-back-outline'}
       />

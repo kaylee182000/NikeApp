@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, ScrollView, Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import products from '../../data/products';
 
 import ProductSlide from './components/ProductSlicce';

@@ -1,19 +1,23 @@
-import React, { EventHandler } from "react";
-import { View,Text,Pressable, } from "react-native";
+import React from 'react';
+import {Text, TouchableHighlight} from 'react-native';
 
-import styles from "./styles";
+import styles from './styles';
 
 interface ButtonProps {
-    buttonText: string;
-    onPressButton?: () => void
+  buttonText: string;
+  onPressButton?: () => void;
 }
 
-const ButtonCommon = ({buttonText,onPressButton} : ButtonProps) => {
-    return (
-        <Pressable onPress={onPressButton} style={[styles.button,{width: "90%" }]}>
-            <Text style={styles.buttonText}>{buttonText}</Text>
-        </Pressable>
-    )
-}
+const ButtonCommon = ({buttonText, onPressButton}: ButtonProps) => {
+  return (
+    <TouchableHighlight
+      onPress={onPressButton}
+      activeOpacity={0.9}
+      underlayColor="#7f1d1d"
+      style={[styles.button, {width: '90%'}]}>
+      <Text style={styles.buttonText}>{buttonText}</Text>
+    </TouchableHighlight>
+  );
+};
 
-export default ButtonCommon
+export default ButtonCommon;
