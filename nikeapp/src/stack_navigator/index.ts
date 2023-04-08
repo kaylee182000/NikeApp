@@ -1,5 +1,6 @@
 export const screenName = {
-    productScreen: 'ProductScreen',
-    productDetaiScreen: 'ProductDetailScreen',
-    cartScreen: 'CartScreen',
-}
+  productScreen: 'ProductScreen',
+  productDetaiScreen: 'ProductDetailScreen',
+  cartScreen: 'CartScreen',
+  loginScreen: 'LoginScreen',
+};

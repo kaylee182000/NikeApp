@@ -4,11 +4,13 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 
 import productSlide from './product/productSlide';
 import cartSlide from './cart/cartSlide';
+import userSlide from './user/userSlide';
 
 export const store = configureStore({
   reducer: {
     products: productSlide,
-    cart: cartSlide
+    cart: cartSlide,
+    user: userSlide,
   },
 });
 
