@@ -11,11 +11,14 @@ import {screenName} from '../../stack_navigator';
 import {changeQuantity, deleteFromCart} from '../../redux/cart/cartSlide';
 import {numberWithCommas} from '../../helpers/index';
 
+import {userCart} from '../../types/user.type';
+
 import styles from './styles';
 
 const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
   const dispatch = useAppDispatch();
   const carts = useAppSelector(rootState => rootState.cart.cart);
+  const user = useAppSelector(rootState => rootState.user.userProfile);
 
   const increaseQuantity = (productId: string) => {
     const data = {id: productId, type: 'increase'};
@@ -46,6 +49,18 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
     return subTotalPrice + 10;
   }, [getSubTotalPrice]);
 
+  const handleCheckOut = useCallback(() => {
+    if (user.userName === '') {
+      navigation.navigate(screenName.loginScreen);
+    } else {
+      const data: userCart[] = [];
+      carts.forEach(p => {
+        data.push({productId: p.product.id, quantity: p.quantity});
+      });
+      console.log(data);
+    }
+  }, [carts, navigation, user]);
+
   const renderFooterComponent = () => {
     return (
       <View style={styles.totalContainer}>
@@ -68,6 +83,14 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
       </View>
     );
   };
+
+  const renderButtonCheckout = useCallback(() => {
+    if (carts.length > 0) {
+      return (
+        <ButtonCommon buttonText={'Checkout'} onPressButton={handleCheckOut} />
+      );
+    }
+  }, [carts.length, handleCheckOut]);
 
   return (
     <View style={styles.container}>
@@ -93,7 +116,7 @@ const ShoppingCart = ({navigation}: NativeStackScreenProps<any>) => {
           ListFooterComponent={renderFooterComponent}
         />
       </View>
-      <ButtonCommon buttonText={'Checkout'} />
+      {renderButtonCheckout()}
     </View>
   );
 };

@@ -1,13 +1,13 @@
 import {createSlice} from '@reduxjs/toolkit';
 import products from '../../data/products';
-import { Product } from '../../types/product.type';
+import {Product} from '../../types/product.type';
 
 interface ProductState {
   products: Product[];
 }
 
-const initialState : ProductState = {
-  products: products
+const initialState: ProductState = {
+  products: products,
 };
 
 const productSlide = createSlice({
