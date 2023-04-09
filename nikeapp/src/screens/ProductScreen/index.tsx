@@ -1,17 +1,38 @@
-import React from 'react';
-import {Text, View, FlatList} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {FlatList, ActivityIndicator} from 'react-native';
 //import products from '../../data/products';
 import CardItem from '../../components/CardItem';
 import AppBarHeader from '../../components/AppBarHeader';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {screenName} from '../../stack_navigator';
+import {useGetProductsQuery} from '../../redux/api/apiSlide';
 //khong dung useSelector nhu bth nua ma dung useAppSelector
-import {useAppSelector} from '../../redux/store';
+// import {useAppSelector} from '../../redux/store';
+import axios from 'axios';
 
 import styles from './styles';
+import {Product} from '../../types/product.type';
+import {CustomAxios} from '../../helpers';
 
 const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
-  const products = useAppSelector(rootState => rootState.products?.products);
+  //const products = useAppSelector(rootState => rootState.products?.products);
+  const [product, setProduct] = useState<Product[]>([]);
+
+  const fetchProducts = async () => {
+    try {
+      return await CustomAxios().get('/product');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  //console.log(product);
+
+  const {data, isLoading} = useGetProductsQuery();
 
   const onPressDetailProduct = (id: string) => {
     navigation.navigate(screenName.productDetaiScreen, {productId: id});
@@ -20,6 +41,8 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
   const onPressIconRight = () => {
     navigation.navigate(screenName.cartScreen);
   };
+  // console.log(useGetProductsQuery(), 'hihihih');
+
   return (
     <>
       <AppBarHeader
@@ -31,8 +54,9 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
         iconRight={'cart-outline'}
         onPressIconRight={onPressIconRight}
       />
+      {isLoading && <ActivityIndicator />}
       <FlatList
-        data={products}
+        data={data}
         renderItem={({item}) => (
           <CardItem data={item} onPressSeeDetail={onPressDetailProduct} />
         )}
