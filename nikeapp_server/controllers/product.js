@@ -3,7 +3,7 @@ import Product from "../models/Product.js";
 export const getProduct = async (req, res) => {
   try {
     const product = await Product.find();
-    res.send({ status: 'OK', data: product });
+    res.status(200).json(product);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }

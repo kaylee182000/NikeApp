@@ -1,5 +1,11 @@
 import React from 'react';
-import {ScrollView, Text, View} from 'react-native';
+import {
+  ScrollView,
+  Text,
+  View,
+  useWindowDimensions,
+  ActivityIndicator,
+} from 'react-native';
 import products from '../../data/products';
 
 import ProductSlide from './components/ProductSlicce';
@@ -13,9 +19,12 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Product} from '../../types/product.type';
 import {useAppDispatch} from '../../redux/store';
 import {addToCart} from '../../redux/cart/cartSlide';
+import {useGetProductQuery} from '../../redux/api/apiSlide';
 import styles from './styles';
+import FastImage from 'react-native-fast-image';
 
 const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
+  const {width} = useWindowDimensions();
   const route =
     useRoute<RouteProp<RootStackParamList, 'ProductDetailScreen'>>();
 
@@ -23,11 +32,13 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
 
   const productId = route.params.productId;
 
-  const product: Product = products.find(item => item.id === productId)!;
+  const {data, isLoading} = useGetProductQuery(productId);
+
+  //const product: Product = products.find(item => item.id === productId)!;
 
   const onPressAddToCart = () => {
-    const data = {product: product, size: 43, quantity: 1};
-    dispatch(addToCart({data: data}));
+    const productData = {product: data, size: 43, quantity: 1};
+    dispatch(addToCart({data: productData}));
     navigation.navigate(screenName.cartScreen);
   };
 
@@ -41,10 +52,10 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
 
   return (
     <>
-      {product && (
+      {data && (
         <View style={styles.container}>
           <AppBarHeader
-            title={product.name}
+            title={data.name}
             onPressGoBack={handlePressBack}
             isShowIcon={true}
             iconLeft={'chevron-back-outline'}
@@ -52,23 +63,33 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
             iconRight={'cart-outline'}
             onPressIconRight={onPressIconRight}
           />
-          <ScrollView>
-            <View style={styles.scrollContainer}>
-              <ProductSlide imageData={product.images} />
-              <View style={{padding: 20}}>
-                <View style={styles.viewRow}>
-                  <Text style={styles.title}>{product.name}</Text>
-                  <Text style={styles.price}>${product.price}</Text>
-                </View>
+          {isLoading ? (
+            <ActivityIndicator size={20} color={'#7f1d1d'} />
+          ) : (
+            <>
+              <ScrollView>
+                <View style={styles.scrollContainer}>
+                  <FastImage
+                    source={{uri: data.image}}
+                    style={[styles.image, {width: width}]}
+                  />
 
-                <Text style={styles.desc}>{product.description}</Text>
-              </View>
-            </View>
-          </ScrollView>
-          <ButtonCommon
-            onPressButton={onPressAddToCart}
-            buttonText={'Add To Cart'}
-          />
+                  <View style={{padding: 20}}>
+                    <View style={styles.viewRow}>
+                      <Text style={styles.title}>{data.name}</Text>
+                      <Text style={styles.price}>${data.price}</Text>
+                    </View>
+
+                    <Text style={styles.desc}>{data.description}</Text>
+                  </View>
+                </View>
+              </ScrollView>
+              <ButtonCommon
+                onPressButton={onPressAddToCart}
+                buttonText={'Add To Cart'}
+              />
+            </>
+          )}
         </View>
       )}
     </>

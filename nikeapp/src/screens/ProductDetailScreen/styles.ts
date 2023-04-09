@@ -33,6 +33,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
   },
+  image: {
+    aspectRatio: 1,
+  },
 });
 
 export default styles;
