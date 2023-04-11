@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
 
 //use the ip address from the machine using ipconfig
-const baseUrl = 'http://192.168.1.10:8080/api/v1/';
+const baseUrl = 'https://nikestore-kaylee.onrender.com/api/v1/';
 
 // Define a service using a base URL and expected endpoints
 export const apiSlide = createApi({
