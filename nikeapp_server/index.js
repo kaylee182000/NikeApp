@@ -8,6 +8,7 @@ import morgan from "morgan";
 
 //import route
 import productRoutes from "./routes/product.js";
+import userRoutes from "./routes/user.js";
 
 dotenv.config();
 const app = express();
@@ -22,7 +23,11 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 //
 
+//product routes
 app.use("/api/v1", productRoutes);
+
+//user routes
+app.use("/api/v1", userRoutes);
 
 const PORT = process.env.PORT || 8080;
 mongoose.set("strictQuery", false);

@@ -1,9 +1,9 @@
 export interface User {
   userName: string;
-  userCart: userCart[];
+  userCart: UserCart[];
 }
 
-export interface userCart {
+export interface UserCart {
   productId: string;
   quantity: number;
 }
