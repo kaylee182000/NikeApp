@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   ScrollView,
   Text,
@@ -6,9 +6,6 @@ import {
   useWindowDimensions,
   ActivityIndicator,
 } from 'react-native';
-import products from '../../data/products';
-
-import ProductSlide from './components/ProductSlicce';
 import ButtonCommon from '../../components/ButtonCommon';
 import AppBarHeader from '../../components/AppBarHeader';
 
@@ -16,30 +13,32 @@ import {useRoute, RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '../../stack_navigator/navigation';
 import {screenName} from '../../stack_navigator';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Product} from '../../types/product.type';
 import {useAppDispatch} from '../../redux/store';
 import {addToCart} from '../../redux/cart/cartSlide';
 import {useGetProductQuery} from '../../redux/api/apiSlide';
 import styles from './styles';
 import FastImage from 'react-native-fast-image';
+import {useAppSelector} from '../../redux/store';
+import CommonModal from '../../components/CommonModal';
 
 const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
   const {width} = useWindowDimensions();
+  const dispatch = useAppDispatch();
   const route =
     useRoute<RouteProp<RootStackParamList, 'ProductDetailScreen'>>();
-
-  const dispatch = useAppDispatch();
+  const isLogin = useAppSelector(rootState => rootState.user.isLogin);
 
   const productId = route.params.productId;
 
+  const [visible, setVisible] = useState<boolean>(false);
+
   const {data, isLoading} = useGetProductQuery(productId);
-
-  //const product: Product = products.find(item => item.id === productId)!;
-
   const onPressAddToCart = () => {
-    const productData = {product: data, size: 43, quantity: 1};
-    dispatch(addToCart({data: productData}));
-    navigation.navigate(screenName.cartScreen);
+    if (!isLogin) {
+      setVisible(true);
+    } else {
+      navigation.navigate(screenName.cartScreen);
+    }
   };
 
   const handlePressBack = () => {
@@ -48,6 +47,14 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
 
   const onPressIconRight = () => {
     navigation.navigate(screenName.cartScreen);
+  };
+
+  const onPressBtn1 = () => {
+    setVisible(false);
+  };
+  const onPressBtn2 = () => {
+    setVisible(false);
+    navigation.navigate(screenName.loginScreen);
   };
 
   return (
@@ -59,7 +66,7 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
             onPressGoBack={handlePressBack}
             isShowIcon={true}
             iconLeft={'chevron-back-outline'}
-            isShowIconRight={true}
+            isShowIconRight={isLogin}
             iconRight={'cart-outline'}
             onPressIconRight={onPressIconRight}
           />
@@ -89,6 +96,17 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
                 buttonText={'Add To Cart'}
               />
             </>
+          )}
+          {visible && (
+            <CommonModal
+              isVisible={visible}
+              modalTTitle={'Oh nooo...!'}
+              modalDesc={'Please login to add products to cart'}
+              btn1Text={'Cancel'}
+              btn2Text={'Login Now'}
+              onPressBtn1={onPressBtn1}
+              onPressBtn2={onPressBtn2}
+            />
           )}
         </View>
       )}

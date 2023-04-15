@@ -7,10 +7,11 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {screenName} from '../../stack_navigator';
 import {useGetProductsQuery} from '../../redux/api/apiSlide';
 //khong dung useSelector nhu bth nua ma dung useAppSelector
-// import {useAppSelector} from '../../redux/store';
+import {useAppSelector} from '../../redux/store';
 import styles from './styles';
 
 const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
+  const isLogin = useAppSelector(rootState => rootState.user.isLogin);
   const {data, isLoading} = useGetProductsQuery();
 
   const onPressDetailProduct = (id: string) => {
@@ -28,7 +29,7 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
         //onPressGoBack={handlePressGoback}
         // isShowIcon={true}
         // iconLeft={'chevron-back-outline'}
-        isShowIconRight={true}
+        isShowIconRight={isLogin}
         iconRight={'cart-outline'}
         onPressIconRight={onPressIconRight}
       />

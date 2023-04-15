@@ -8,32 +8,40 @@ import {
 } from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import InputField from '../../components/InputField';
-import {useDispatch} from 'react-redux';
-import {setCredential} from '../../redux/user/userSlide';
-import {useLoginMutation} from '../../redux/api/apiSlide';
+import {useRegisterMutation} from '../../redux/api/apiSlide';
 import {screenName} from '../../stack_navigator';
 
 import styles from './styles';
 
 const backgroundImage = require('../../assets/images/Coproom.jpg');
 
-const LoginScreen = ({navigation}: NativeStackScreenProps<any>) => {
-  const dispatch = useDispatch();
-  const [userState, setUserState] = useState({
+interface RegisterState {
+  username: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  address: string;
+}
+
+const RegisterScreen = ({navigation}: NativeStackScreenProps<any>) => {
+  const [userState, setUserState] = useState<RegisterState>({
     username: '',
+    email: '',
     password: '',
+    phoneNumber: '',
+    address: '',
   });
 
-  const [login, {isLoading}] = useLoginMutation();
+  const [register, {isLoading}] = useRegisterMutation();
 
-  const handlePressLogin = async () => {
+  const handlePressSignup = async () => {
+    console.log(userState, '=====');
     try {
-      const result = await login(userState);
+      const result = await register(userState);
+
+      //https://stackoverflow.com/questions/69013843/working-with-typescript-interfaces-error-property-does-not-exist
       if ('data' in result && result.data) {
-        const {token, user} = result.data;
-        const data = {userProfile: user, token: token};
-        dispatch(setCredential({data}));
-        navigation.navigate(screenName.productScreen);
+        navigation.navigate(screenName.loginScreen);
       }
     } catch (error) {
       console.log(error);
@@ -45,10 +53,20 @@ const LoginScreen = ({navigation}: NativeStackScreenProps<any>) => {
   const onChangePassword = (newPassWord: string) => {
     setUserState({...userState, password: newPassWord});
   };
+  const onChangeEmail = (newEmail: string) => {
+    setUserState({...userState, email: newEmail});
+  };
+  const onChangePhoneNumber = (newPhoneNumber: string) => {
+    setUserState({...userState, phoneNumber: newPhoneNumber});
+  };
+  const onChangeAddress = (newAddress: string) => {
+    setUserState({...userState, address: newAddress});
+  };
 
   return (
     <ImageBackground source={backgroundImage} style={styles.backgroundImage}>
       <View style={styles.overlay} />
+
       <View style={styles.container}>
         {isLoading ? (
           <ActivityIndicator />
@@ -61,28 +79,41 @@ const LoginScreen = ({navigation}: NativeStackScreenProps<any>) => {
               newText={userState.username}
             />
             <InputField
+              placeHolderText={'Email'}
+              isPassword={false}
+              onChangeText={(newText: string) => onChangeEmail(newText)}
+              newText={userState.email}
+            />
+            <InputField
               placeHolderText={'Password'}
               isPassword={true}
               onChangeText={(newText: string) => onChangePassword(newText)}
               newText={userState.password}
             />
+            <InputField
+              placeHolderText={'Phone Number'}
+              isPassword={false}
+              onChangeText={(newText: string) => onChangePhoneNumber(newText)}
+              newText={userState.phoneNumber}
+            />
+            <InputField
+              placeHolderText={'Address'}
+              isPassword={false}
+              onChangeText={(newText: string) => onChangeAddress(newText)}
+              newText={userState.address}
+            />
             <View style={styles.viewRow}>
               <Pressable
-                onPress={handlePressLogin}
+                onPress={handlePressSignup}
                 disabled={
                   userState.username === '' || userState.password === ''
                     ? true
                     : false
                 }>
                 <View style={styles.btn}>
-                  <Text style={styles.btnText}>Login</Text>
+                  <Text style={styles.btnText}>Sign Up</Text>
                 </View>
               </Pressable>
-              <Text
-                style={styles.textCommon}
-                onPress={() => navigation.navigate(screenName.registerScreen)}>
-                Don't have an account
-              </Text>
             </View>
           </>
         )}
@@ -91,4 +122,4 @@ const LoginScreen = ({navigation}: NativeStackScreenProps<any>) => {
   );
 };
 
-export default LoginScreen;
+export default RegisterScreen;

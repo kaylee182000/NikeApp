@@ -3,4 +3,5 @@ export const screenName = {
   productDetaiScreen: 'ProductDetailScreen',
   cartScreen: 'CartScreen',
   loginScreen: 'LoginScreen',
+  registerScreen: 'RegisterScreen',
 };

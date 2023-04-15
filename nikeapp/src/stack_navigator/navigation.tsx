@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen';
 import ProductScreen from '../screens/ProductScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import CartScreen from '../screens/ShoppingCart';
+import RegisterScreen from '../screens/RegisterScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,10 @@ const RootStack = () => {
         <Stack.Screen
           name={screenName.productScreen}
           component={ProductScreen}
+        />
+        <Stack.Screen
+          name={screenName.registerScreen}
+          component={RegisterScreen}
         />
         <Stack.Screen
           name={screenName.productDetaiScreen}

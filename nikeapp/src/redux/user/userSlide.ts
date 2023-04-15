@@ -1,28 +1,47 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {User} from '../../types/user.type';
+import {UserProfile} from '../../types/user.type';
 
 interface UserState {
-  userProfile: User;
+  userProfile: UserProfile;
+  token: string;
+  isLogin: boolean;
 }
 
 const initialState: UserState = {
   userProfile: {
-    userName: '',
-    userCart: [],
+    _id: '',
+    username: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+    address: '',
+    cart: [],
   },
+  token: '',
+  isLogin: false,
 };
+
+interface CredentialPayload {
+  userProfile: UserProfile;
+  token: string;
+}
 
 const userSlide = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<{data: User}>) => {
-      const {data} = action.payload;
-      state.userProfile = data;
+    setCredential: (
+      state,
+      action: PayloadAction<{data: CredentialPayload}>,
+    ) => {
+      const {userProfile, token} = action.payload.data;
+      state.userProfile = userProfile;
+      state.token = token;
+      state.isLogin = true;
     },
   },
 });
 
-export const {login} = userSlide.actions;
+export const {setCredential} = userSlide.actions;
 
 export default userSlide.reducer;

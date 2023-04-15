@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   viewRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
   },
@@ -33,11 +33,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 20,
     textAlign: 'center',
-  },
-  textCommon: {
-    fontSize: 16,
-    color: 'white',
-    fontWeight: 'bold',
   },
 });
 
