@@ -8,7 +8,9 @@ import {screenName} from '../../stack_navigator';
 import {useGetProductsQuery} from '../../redux/api/apiSlide';
 //khong dung useSelector nhu bth nua ma dung useAppSelector
 import {useAppSelector} from '../../redux/store';
+import {color} from '../../constants';
 import styles from './styles';
+import BottomTab from '../../components/BottomTab';
 
 const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
   const isLogin = useAppSelector(rootState => rootState.user.isLogin);
@@ -23,7 +25,7 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
   };
 
   return (
-    <>
+    <View style={styles.container}>
       <AppBarHeader
         title="Nike"
         //onPressGoBack={handlePressGoback}
@@ -33,7 +35,11 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
         iconRight={'cart-outline'}
         onPressIconRight={onPressIconRight}
       />
-      <View style={styles.container}>{isLoading && <ActivityIndicator />}</View>
+      <View style={styles.container}>
+        {isLoading && (
+          <ActivityIndicator color={color.defaultColor2} size={28} />
+        )}
+      </View>
 
       <FlatList
         data={data}
@@ -43,7 +49,10 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
         keyExtractor={item => item.id}
         numColumns={2}
       />
-    </>
+      <View style={{marginTop: 40}}>
+        <BottomTab />
+      </View>
+    </View>
   );
 };
 
