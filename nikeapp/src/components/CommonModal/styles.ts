@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   contentContainer: {
-    backgroundColor: 'white',
+    backgroundColor: color.defaultColor3,
     borderRadius: 12,
     height: 150,
     width: 300,
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   viewRow: {
     flexDirection: 'row',
     justifyContent: 'space-evenly',
-    backgroundColor: '#7f1d1d',
+    backgroundColor: color.defaultColor2,
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
   },
@@ -31,13 +32,13 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   btnText: {
-    color: 'white',
+    color: color.defaultColor4,
     fontSize: 16,
     fontWeight: '500',
   },
   title: {
-    color: 'black',
-    fontSize: 20,
+    color: color.defaultColor2,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
   },
@@ -45,6 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: '400',
     marginBottom: 10,
+    color: color.defaultColor4,
   },
 });
 

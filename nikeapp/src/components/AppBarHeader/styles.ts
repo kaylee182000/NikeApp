@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   headerContainer: {
@@ -6,13 +7,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: '#7f1d1d',
+    backgroundColor: color.defaultColor3,
     padding: 16,
   },
   text: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: color.defaultColor2,
     marginLeft: 4,
   },
 });

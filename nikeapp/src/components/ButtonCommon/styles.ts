@@ -1,4 +1,5 @@
-import {StyleSheet, useWindowDimensions} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   button: {
@@ -6,14 +7,14 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     alignSelf: 'center',
-    backgroundColor: 'black',
+    backgroundColor: color.defaultColor3,
     borderRadius: 50,
     padding: 20,
   },
   buttonText: {
-    color: 'white',
-    fontWeight: '500',
-    fontSize: 16,
+    color: color.defaultColor4,
+    fontWeight: 'bold',
+    fontSize: 20,
   },
 });
 

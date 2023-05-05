@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
   backgroundImage: {flex: 1, resizeMode: 'cover'},
   overlay: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0,0,0,0.7)', // black with 50% opacity
+    backgroundColor: 'rgba(0,0,0,0.5)', // black with 50% opacity
   },
   viewRow: {
     flexDirection: 'row',
@@ -22,21 +23,22 @@ const styles = StyleSheet.create({
   },
   btn: {
     width: 150,
-    height: 'auto',
+    height: 60,
     padding: 16,
-    backgroundColor: 'white',
+    backgroundColor: color.defaultColor2,
+    justifyContent: 'center',
     borderRadius: 12,
     marginTop: 8,
   },
   btnText: {
-    color: 'black',
+    color: color.defaultColor4,
     fontWeight: 'bold',
     fontSize: 20,
     textAlign: 'center',
   },
   textCommon: {
     fontSize: 16,
-    color: 'white',
+    color: color.defaultColor4,
     fontWeight: 'bold',
   },
 });

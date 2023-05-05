@@ -1,14 +1,16 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   inputField: {
-    backgroundColor: '#7f1d1d',
+    backgroundColor: color.defaultColor3,
     width: '100%',
-    height: 'auto',
+    height: 60,
     borderRadius: 12,
     marginVertical: 8,
-    paddingHorizontal: 16,
-    color: 'white',
+    padding: 16,
+    color: color.defaultColor2,
+    fontSize: 16,
   },
 });
 

@@ -1,9 +1,11 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   contanier: {
     width: '50%',
     padding: 8,
+    backgroundColor: color.lightGray,
   },
   image: {
     width: '100%',

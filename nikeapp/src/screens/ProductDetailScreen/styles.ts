@@ -1,22 +1,23 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../constants';
 
 const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: color.defaultColor4,
     marginBottom: 72,
   },
   title: {
     fontSize: 34,
     fontWeight: 'bold',
     //marginVertical: 10,
-    color: '#000',
+    color: color.defaultColor3,
   },
   price: {
     fontWeight: 'bold',
     fontSize: 28,
     letterSpacing: 1.5,
-    color: '#7f1d1d',
+    color: color.defaultColor2,
   },
   desc: {
     marginVertical: 16,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: color.defaultColor4,
   },
   image: {
     aspectRatio: 1,

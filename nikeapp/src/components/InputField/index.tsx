@@ -1,5 +1,6 @@
 import React from 'react';
 import {TextInput} from 'react-native';
+import { color } from '../../constants';
 
 import styles from './styles';
 
@@ -20,7 +21,7 @@ const InputField = ({
     <TextInput
       style={styles.inputField}
       placeholder={placeHolderText}
-      placeholderTextColor={'white'}
+      placeholderTextColor={color.defaultColor2}
       secureTextEntry={isPassword}
       onChangeText={onChangeText}
       value={newText}

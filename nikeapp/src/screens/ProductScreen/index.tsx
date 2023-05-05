@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {FlatList, ActivityIndicator, View} from 'react-native';
 //import products from '../../data/products';
 import CardItem from '../../components/CardItem';
@@ -25,7 +25,7 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
   return (
     <>
       <AppBarHeader
-        title="PRODUCT"
+        title="Nike"
         //onPressGoBack={handlePressGoback}
         // isShowIcon={true}
         // iconLeft={'chevron-back-outline'}

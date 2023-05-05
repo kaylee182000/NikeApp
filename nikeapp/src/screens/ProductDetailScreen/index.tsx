@@ -71,7 +71,7 @@ const ProductDetailScreen = ({navigation}: NativeStackScreenProps<any>) => {
             onPressIconRight={onPressIconRight}
           />
           {isLoading ? (
-            <ActivityIndicator size={20} color={'#7f1d1d'} />
+            <ActivityIndicator />
           ) : (
             <>
               <ScrollView>

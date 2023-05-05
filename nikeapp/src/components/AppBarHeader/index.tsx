@@ -1,6 +1,7 @@
 import React from 'react';
-import {Text, View, SafeAreaView, TouchableOpacity} from 'react-native';
+import {Text, SafeAreaView, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {color} from '../../constants';
 
 import styles from './styles';
 
@@ -27,7 +28,7 @@ const AppBarHeader = ({
     <SafeAreaView style={styles.headerContainer}>
       {isShowIcon && iconLeft ? (
         <TouchableOpacity onPress={onPressGoBack}>
-          <Icon name={iconLeft} color="white" size={28} />
+          <Icon name={iconLeft} color={color.defaultColor4} size={30} />
         </TouchableOpacity>
       ) : (
         <Text></Text>
@@ -35,7 +36,12 @@ const AppBarHeader = ({
       <Text style={styles.text}>{title}</Text>
       {isShowIconRight && iconRight ? (
         <TouchableOpacity onPress={onPressIconRight}>
-          <Icon name={iconRight} color="white" size={28} style={{justifyContent: 'flex-start'}}/>
+          <Icon
+            name={iconRight}
+            color={color.defaultColor4}
+            size={30}
+            style={{justifyContent: 'flex-start'}}
+          />
         </TouchableOpacity>
       ) : (
         <Text></Text>
