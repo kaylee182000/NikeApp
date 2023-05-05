@@ -7,7 +7,7 @@ import {UserProfile} from '../../types/user.type';
 
 //use the ip address from the machine using ipconfig
 const baseUrl = 'https://nikestore-kaylee.onrender.com/api/v1/';
-//const baseUrl = 'http://172.16.0.132:8080/api/v1/';
+// const baseUrl = 'http://172.16.0.132:8080/api/v1/';
 
 type ProductResponse = Product[];
 
