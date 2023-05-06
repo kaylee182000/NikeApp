@@ -9,6 +9,7 @@ import ProductScreen from '../screens/ProductScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
 import CartScreen from '../screens/ShoppingCart';
 import RegisterScreen from '../screens/RegisterScreen';
+import AccountScreen from '../screens/AccountScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,8 +38,16 @@ const RootStack = () => {
         <Stack.Screen
           name={screenName.productDetaiScreen}
           component={ProductDetailScreen}
+          options={{
+            animation: 'fade_from_bottom',
+            presentation: 'modal',
+          }}
         />
         <Stack.Screen name={screenName.cartScreen} component={CartScreen} />
+        <Stack.Screen
+          name={screenName.accountScreen}
+          component={AccountScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,7 +7,11 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: color.lightGray,
+    backgroundColor: color.defaultColor4,
+  },
+  contentContainer: {
+    flex: 1,
+    width: '100%',
   },
   bottomContainer: {
     marginTop: 40,

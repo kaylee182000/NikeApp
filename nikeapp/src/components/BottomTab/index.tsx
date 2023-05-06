@@ -6,25 +6,43 @@ import {color} from '../../constants';
 import styles from './styles';
 
 interface TabProps {
-  onPressIcon1: () => void;
-  onPressIcon2: () => void;
+  isHome: boolean;
+  isAccount: boolean;
+  onPressChangeTab: (tab: string) => void;
 }
 
-const BottomTab = ({onPressIcon1, onPressIcon2}: TabProps) => {
+const BottomTab = ({onPressChangeTab, isHome, isAccount}: TabProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={onPressIcon1}>
-          <Feather name="home" size={24} color={color.defaultColor4} />
+        <TouchableOpacity
+          onPress={() => onPressChangeTab('home')}
+          disabled={isHome}>
+          <Feather
+            name="home"
+            size={24}
+            color={isHome ? color.defaultColor2 : color.defaultColor4}
+          />
         </TouchableOpacity>
       </View>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={onPressIcon2}>
-          <Feather name="user" size={24} color={color.defaultColor4} />
+        <TouchableOpacity
+          onPress={() => onPressChangeTab('account')}
+          disabled={isAccount}>
+          <Feather
+            name="user"
+            size={24}
+            color={isAccount ? color.defaultColor2 : color.defaultColor4}
+          />
         </TouchableOpacity>
       </View>
     </View>
   );
+};
+
+BottomTab.defaultProps = {
+  isHome: false,
+  isAccount: false,
 };
 
 export default BottomTab;

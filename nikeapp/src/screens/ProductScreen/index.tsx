@@ -24,6 +24,12 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
     navigation.navigate(screenName.cartScreen);
   };
 
+  const onPressChangeTab = (tab: string) => {
+    if (tab === 'account') {
+      navigation.navigate(screenName.accountScreen);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <AppBarHeader
@@ -35,7 +41,7 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
         iconRight={'cart-outline'}
         onPressIconRight={onPressIconRight}
       />
-      <View style={styles.container}>
+      <View style={[styles.container, {justifyContent: 'center'}]}>
         {isLoading && (
           <ActivityIndicator color={color.defaultColor2} size={28} />
         )}
@@ -49,8 +55,8 @@ const ProductScreen = ({navigation}: NativeStackScreenProps<any>) => {
         keyExtractor={item => item.id}
         numColumns={2}
       />
-      <View style={{marginTop: 40}}>
-        <BottomTab />
+      <View style={styles.bottomContainer}>
+        <BottomTab onPressChangeTab={onPressChangeTab} isHome={true} />
       </View>
     </View>
   );
